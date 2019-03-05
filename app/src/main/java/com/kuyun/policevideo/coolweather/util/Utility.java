@@ -4,6 +4,7 @@ import android.text.TextUtils;
 import android.util.Log;
 
 import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import com.kuyun.policevideo.coolweather.db.City;
 import com.kuyun.policevideo.coolweather.db.County;
 import com.kuyun.policevideo.coolweather.db.Province;
@@ -17,7 +18,7 @@ import org.json.JSONObject;
 public class Utility {
     //解析和处理服务器返回的省级数据
     public static boolean handlePronvinceResponse(String response){
-        if (!TextUtils.isEmpty(response)){
+        if (!TextUtils.isEmpty(response)){/*
             try {
                 JSONArray allPronvices = new JSONArray(response);
                 for (int i=0;i<allPronvices.length();i++){
@@ -30,7 +31,12 @@ public class Utility {
                 return true;
             } catch (JSONException e) {
                 e.printStackTrace();
-            }
+            }*/
+            Gson gson = new GsonBuilder().create();
+            Province province = gson.fromJson("http://guolin.tech/api/china",Province.class);
+            province.getProvinceName();
+            province.getId();
+            province.save();
         }
         return false;
     }
