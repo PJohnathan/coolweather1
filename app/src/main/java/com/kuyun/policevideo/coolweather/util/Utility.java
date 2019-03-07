@@ -18,7 +18,7 @@ import org.json.JSONObject;
 public class Utility {
     //解析和处理服务器返回的省级数据
     public static boolean handlePronvinceResponse(String response){
-        if (!TextUtils.isEmpty(response)){/*
+        if (!TextUtils.isEmpty(response)){
             try {
                 JSONArray allPronvices = new JSONArray(response);
                 for (int i=0;i<allPronvices.length();i++){
@@ -31,12 +31,12 @@ public class Utility {
                 return true;
             } catch (JSONException e) {
                 e.printStackTrace();
-            }*/
-            Gson gson = new GsonBuilder().create();
+            }
+            /*Gson gson = new GsonBuilder().create();
             Province province = gson.fromJson("http://guolin.tech/api/china",Province.class);
             province.getProvinceName();
             province.getId();
-            province.save();
+            province.save();*/
         }
         return false;
     }

@@ -1,5 +1,6 @@
 package com.kuyun.policevideo.coolweather;
 
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.nfc.FormatException;
@@ -22,6 +23,7 @@ import android.widget.Toast;
 import com.bumptech.glide.Glide;
 import com.kuyun.policevideo.coolweather.gson.Forecast;
 import com.kuyun.policevideo.coolweather.gson.Weather;
+import com.kuyun.policevideo.coolweather.service.AutoUpdateService;
 import com.kuyun.policevideo.coolweather.util.HttpUtil;
 import com.kuyun.policevideo.coolweather.util.Utility;
 
@@ -175,6 +177,8 @@ public class WeatherActivity extends AppCompatActivity {
         if (weather.aqi != null){
             aqiText.setText(weather.aqi.city.aqi);
             pm25Text.setText(weather.aqi.city.pm25);
+            Intent intent = new Intent(this,AutoUpdateService.class);
+            startService(intent);
         }
         String comfort = "舒适度："+weather.suggestion.comfort.info;
         String carWash = "洗车指数："+weather.suggestion.carWash.info;
